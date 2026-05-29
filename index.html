@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>🏍️ Kumbhe Moto Expedition | Light/Dark Theme + Maps</title>
-    <!-- Google Fonts + Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>🏍️ Kumbhe Waterfalls | Motorcycle Expedition Planner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -14,53 +13,48 @@
             box-sizing: border-box;
         }
 
-        /* CSS Variables for Light/Dark Theme */
         :root {
-            --bg-gradient-start: #0a1f1a;
-            --bg-gradient-end: #05140f;
-            --card-bg: rgba(18, 38, 30, 0.85);
-            --card-hover: rgba(22, 48, 38, 0.92);
-            --text-primary: #e2f0e8;
-            --text-secondary: #b6dec8;
-            --border-color: rgba(74, 222, 128, 0.35);
+            --bg-primary: #0a0f0d;
+            --bg-secondary: #111816;
+            --card-bg: rgba(22, 32, 28, 0.92);
+            --card-border: rgba(74, 222, 128, 0.25);
+            --text-primary: #e8f0ec;
+            --text-secondary: #b2cdc0;
             --accent: #4ade80;
-            --accent-dark: #2b8c5a;
-            --stat-bg: #0f2a20;
-            --input-bg: #102e23;
-            --input-border: #2f6b4f;
-            --footer-border: #1e4a38;
-            --map-border: #4ade8033;
-            --btn-primary: #2b8c5a;
+            --accent-glow: rgba(74, 222, 128, 0.15);
+            --input-bg: #1a2520;
+            --input-border: #2d3f38;
+            --stat-bg: #131e1a;
+            --btn-bg: #2b8c5a;
             --btn-hover: #3eaa72;
-            --badge-bg: #2b6e49;
+            --badge-bg: #1f543e;
+            --shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
-        body.light-theme {
-            --bg-gradient-start: #e8f0ec;
-            --bg-gradient-end: #d0e0d8;
-            --card-bg: rgba(245, 250, 245, 0.92);
-            --card-hover: rgba(235, 245, 235, 0.98);
+        body.light {
+            --bg-primary: #f0f6f3;
+            --bg-secondary: #e2ece6;
+            --card-bg: rgba(255, 255, 255, 0.96);
+            --card-border: rgba(46, 125, 100, 0.3);
             --text-primary: #1a2e25;
-            --text-secondary: #2c4a3e;
-            --border-color: rgba(34, 139, 34, 0.3);
+            --text-secondary: #3a5e50;
             --accent: #2e7d64;
-            --accent-dark: #226653;
-            --stat-bg: #e0efe8;
+            --accent-glow: rgba(46, 125, 100, 0.08);
             --input-bg: #ffffff;
-            --input-border: #bdd9cf;
-            --footer-border: #cbdcd4;
-            --map-border: #2e7d6455;
-            --btn-primary: #2e7d64;
+            --input-border: #cde0d8;
+            --stat-bg: #e8f2ed;
+            --btn-bg: #2e7d64;
             --btn-hover: #3e9a7c;
             --badge-bg: #3a8b6e;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+            font-family: 'Inter', 'Space Grotesk', sans-serif;
+            background: var(--bg-primary);
             color: var(--text-primary);
-            overflow-x: hidden;
-            transition: background 0.3s ease, color 0.2s ease;
-            background: var(--bg-gradient-start);
+            transition: all 0.3s ease;
+            line-height: 1.5;
         }
 
         body::before {
@@ -70,562 +64,1418 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 30%, var(--bg-gradient-start), var(--bg-gradient-end));
-            z-index: -2;
-            transition: background 0.3s ease;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.04"><path d="M0 0 L200 0 L200 200 L0 200Z" fill="none" stroke="%234ade80" stroke-width="0.4"/><circle cx="45" cy="85" r="2" fill="%234ade80"/><circle cx="150" cy="45" r="1.5" fill="%234ade80"/><path d="M80 30 L90 20 L100 30" stroke="%234ade80" fill="none" stroke-width="1"/></svg>');
-            background-repeat: repeat;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
             pointer-events: none;
-            z-index: -1;
-            opacity: 0.3;
+            z-index: 0;
+            opacity: 0.4;
         }
 
-        .app-container {
-            max-width: 820px;
+        .app {
+            max-width: 1400px;
             margin: 0 auto;
-            background: var(--card-bg);
-            backdrop-filter: blur(3px);
-            min-height: 100vh;
+            padding: 20px;
             position: relative;
             z-index: 2;
-            box-shadow: 0 0 60px rgba(0, 0, 0, 0.2);
-            transition: background 0.25s;
         }
 
-        /* Theme Toggle Button */
-        .theme-toggle-wrapper {
+        .header-bar {
             display: flex;
-            justify-content: flex-end;
-            padding: 12px 16px 0;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0 16px;
+            flex-wrap: wrap;
+            gap: 16px;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 32px;
         }
-        .theme-btn {
-            background: var(--accent-dark);
-            border: none;
-            color: white;
-            padding: 8px 18px;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 0.8rem;
+        .logo-area h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), #a3e635);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo-area p { font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; }
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 10px 20px;
+            border-radius: 100px;
             cursor: pointer;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: 0.2s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            color: var(--text-primary);
         }
-        .theme-btn:hover {
-            transform: scale(0.96);
-            background: var(--btn-hover);
+        .theme-toggle:hover { border-color: var(--accent); transform: scale(0.97); }
+        .credit-badge {
+            display: inline-block;
+            background: var(--badge-bg);
+            color: var(--accent);
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 40px;
+            margin-top: 8px;
         }
 
-        /* navigation */
         .nav-tabs {
             display: flex;
-            background: rgba(10, 30, 24, 0.8);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 30;
-            padding: 6px 0;
-        }
-        body.light-theme .nav-tabs {
-            background: rgba(235, 245, 235, 0.9);
+            gap: 12px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+            background: var(--card-bg);
+            padding: 8px;
+            border-radius: 80px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
         }
         .tab-btn {
             flex: 1;
             background: transparent;
             border: none;
+            padding: 14px 20px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.95rem;
             color: var(--text-secondary);
-            font-weight: 600;
-            padding: 1rem 0.2rem;
-            font-size: 0.9rem;
-            font-family: 'Outfit', sans-serif;
             cursor: pointer;
             transition: all 0.25s;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 6px;
-        }
-        .tab-btn i {
-            font-size: 1.25rem;
+            justify-content: center;
+            gap: 10px;
+            font-family: inherit;
         }
         .tab-btn.active {
-            color: var(--accent);
-            border-bottom: 2.5px solid var(--accent);
-            background: linear-gradient(0deg, rgba(74,222,128,0.1), transparent);
+            background: var(--accent);
+            color: #0a0f0d;
+            box-shadow: 0 4px 12px rgba(74, 222, 128, 0.3);
         }
+        body.light .tab-btn.active { color: white; }
 
-        /* pages */
-        .page {
-            display: none;
-            padding: 1.8rem 1.6rem 2.8rem;
-            animation: fadeUp 0.3s ease-out;
-        }
-        .page.active-page {
-            display: block;
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(12px);}
-            to { opacity: 1; transform: translateY(0);}
-        }
+        .page { display: none; animation: fadeIn 0.35s ease; }
+        .page.active-page { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* cards */
-        .rider-card {
+        .card {
             background: var(--card-bg);
-            backdrop-filter: blur(5px);
-            border-radius: 2rem;
-            border: 1px solid var(--border-color);
-            padding: 1.8rem;
-            margin-bottom: 1.8rem;
-            transition: all 0.2s;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            border: 1px solid var(--card-border);
+            padding: 28px 32px;
+            margin-bottom: 28px;
+            transition: all 0.25s;
+            box-shadow: var(--shadow);
         }
-        .rider-card:hover {
-            border-color: var(--accent);
-            background: var(--card-hover);
-        }
+        .card:hover { border-color: var(--accent); transform: translateY(-3px); }
 
         .badge {
             background: var(--badge-bg);
             color: white;
-            font-weight: 700;
             font-size: 0.7rem;
-            padding: 0.25rem 1rem;
-            border-radius: 40px;
-            display: inline-block;
-        }
-        h2 {
-            font-family: 'Outfit', sans-serif;
             font-weight: 700;
-            font-size: 1.55rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            padding: 5px 14px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 16px;
         }
+        h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        h3 { font-size: 1.2rem; margin-bottom: 12px; font-weight: 600; }
         .stat-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 1.2rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
         }
-        .stat-item {
+        .stat-card {
             background: var(--stat-bg);
-            border-radius: 1.3rem;
-            padding: 1rem 0.8rem;
-            flex: 1;
+            border-radius: 24px;
+            padding: 18px 12px;
             text-align: center;
             border: 1px solid var(--input-border);
         }
-        .map-embed {
-            border-radius: 1.2rem;
-            overflow: hidden;
-            margin: 1rem 0 0.5rem;
-            border: 1px solid var(--map-border);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        .stat-card i { font-size: 1.8rem; color: var(--accent); margin-bottom: 10px; display: inline-block; }
+        .stat-card strong { font-size: 1.3rem; display: block; margin: 8px 0 4px; }
+        .route-item { border-left: 3px solid var(--accent); padding-left: 20px; margin: 20px 0; }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
         }
-        .map-embed iframe {
-            width: 100%;
-            height: 220px;
-            border: 0;
-            display: block;
+        
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
         }
-        .route-line {
-            border-left: 3px solid var(--accent);
-            padding-left: 1.2rem;
-            margin: 1rem 0;
-        }
-        .pricing-input-group {
+        .map-thumb {
             background: var(--stat-bg);
-            border-radius: 1.5rem;
-            padding: 1.2rem;
-            margin-bottom: 1.2rem;
-        }
-        input, select {
-            background: var(--input-bg);
-            border: 1px solid var(--input-border);
-            padding: 12px 18px;
-            border-radius: 2rem;
-            color: var(--text-primary);
-            width: 100%;
-            font-size: 1rem;
-            outline: none;
-            transition: 0.2s;
-        }
-        input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(74,222,128,0.2);
-        }
-        .btn-primary {
-            background: var(--btn-primary);
-            border: none;
-            padding: 12px 22px;
-            border-radius: 60px;
-            font-weight: 700;
-            color: white;
-            font-size: 1rem;
+            border-radius: 24px;
+            overflow: hidden;
             cursor: pointer;
             transition: 0.2s;
-            width: 100%;
+            border: 1px solid var(--input-border);
+        }
+        .map-thumb:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+        .map-img {
+            height: 180px;
+            background: var(--input-bg);
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--accent);
+            font-size: 3.5rem;
+            position: relative;
+        }
+        .map-info {
+            padding: 16px;
+        }
+        .map-info h4 {
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        .map-info p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .open-map-btn {
+            margin-top: 10px;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+        }
+        .open-map-btn:hover {
+            background: var(--accent);
+            color: #0a1f1a;
+        }
+
+        /* Calculator Styles */
+        .calculator-wrapper {
+            width: 100%;
+        }
+        .flex-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            border: 1px solid var(--card-border);
+            padding: 32px;
+            box-shadow: var(--shadow);
+        }
+        .flex-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .flex-badge {
+            background: var(--badge-bg);
+            color: var(--accent);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+        .flex-header h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), #a3e635);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+        }
+        .flex-header p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            margin: 24px 0 12px 0;
+            display: flex;
+            align-items: center;
             gap: 8px;
         }
-        .btn-primary:hover {
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            background: var(--stat-bg);
+            border-radius: 28px;
+            padding: 20px;
+            margin-bottom: 8px;
+        }
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .input-field label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 0.3px;
+        }
+        .input-field input, .input-field select {
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
+            padding: 12px 14px;
+            border-radius: 60px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            outline: none;
+            width: 100%;
+        }
+        .input-field input:focus, .input-field select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+        .input-field input[readonly] {
+            background: var(--stat-bg);
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .accommodation-section {
+            background: var(--stat-bg);
+            border-radius: 28px;
+            padding: 20px;
+            margin-bottom: 8px;
+        }
+        .advisor-inside {
+            background: var(--input-bg);
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent);
+        }
+        .advisor-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .advisor-item {
+            text-align: center;
+            flex: 1;
+        }
+        .advisor-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        .advisor-value {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .night-input-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            background: var(--input-bg);
+            padding: 16px;
+            border-radius: 20px;
+        }
+        .night-input {
+            flex: 1;
+            min-width: 120px;
+        }
+        .night-input label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .night-input input {
+            background: var(--stat-bg);
+            border: 1px solid var(--input-border);
+            padding: 10px 12px;
+            border-radius: 60px;
+            color: var(--text-primary);
+            width: 100%;
+            outline: none;
+        }
+        .night-input input[readonly] {
+            background: var(--stat-bg);
+            color: var(--accent);
+        }
+
+        .food-input-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            background: var(--input-bg);
+            padding: 16px;
+            border-radius: 20px;
+        }
+        .food-input {
+            flex: 1;
+            min-width: 150px;
+        }
+        .food-input label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .food-input input {
+            background: var(--stat-bg);
+            border: 1px solid var(--input-border);
+            padding: 10px 12px;
+            border-radius: 60px;
+            color: var(--text-primary);
+            width: 100%;
+            outline: none;
+        }
+
+        .btn-icon {
+            background: var(--btn-bg);
+            border: none;
+            padding: 10px 16px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-icon:hover {
+            background: var(--btn-hover);
+        }
+        .btn-icon-danger {
+            background: #c2410c;
+        }
+        .btn-icon-danger:hover {
+            background: #e05a1a;
+        }
+
+        .extras-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            background: var(--stat-bg);
+            border-radius: 28px;
+            padding: 20px;
+            margin-bottom: 8px;
+        }
+        .extras-column {
+            background: var(--input-bg);
+            padding: 16px;
+            border-radius: 20px;
+        }
+        .extras-column h4 {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        .toggle-row {
+            background: var(--stat-bg);
+            border-radius: 28px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .toggle-switch {
+            width: 56px;
+            height: 28px;
+            background: #2e453c;
+            border-radius: 40px;
+            cursor: pointer;
+            position: relative;
+            transition: 0.2s;
+        }
+        .toggle-switch.active {
+            background: #4ade80;
+        }
+        .toggle-switch::after {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 3px;
+            transition: 0.2s;
+        }
+        .toggle-switch.active::after {
+            left: 29px;
+        }
+
+        .breakdown-panel {
+            background: var(--stat-bg);
+            border-radius: 28px;
+            padding: 24px;
+            margin: 24px 0;
+            border-left: 4px solid var(--accent);
+        }
+        .break-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--input-border);
+            font-size: 0.95rem;
+        }
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 18px 0 8px;
+            margin-top: 8px;
+            border-top: 2px solid var(--accent);
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+        .accent-value {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            flex: 1;
+            background: var(--btn-bg);
+            border: none;
+            padding: 14px 20px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+        .btn:hover {
             background: var(--btn-hover);
             transform: scale(0.98);
         }
-        .fuel-note {
-            background: var(--stat-bg);
-            border-radius: 1.2rem;
-            padding: 12px;
-            font-size: 0.85rem;
-            text-align: center;
-            border: 1px solid var(--input-border);
-        }
-        .price-breakdown-card {
-            background: var(--stat-bg);
-            border-radius: 1.5rem;
-            padding: 1.2rem;
-            margin-top: 1rem;
-            border-left: 4px solid var(--accent);
-        }
-        hr {
-            border-color: var(--input-border);
-            margin: 0.9rem 0;
-        }
-        .icon-accent {
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--accent);
             color: var(--accent);
-            margin-right: 8px;
         }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
         footer {
             text-align: center;
-            font-size: 0.7rem;
-            padding: 1.2rem;
+            padding: 32px 0 20px;
+            border-top: 1px solid var(--card-border);
+            margin-top: 20px;
             color: var(--text-secondary);
-            border-top: 1px solid var(--footer-border);
+            font-size: 0.8rem;
         }
-        @media (max-width: 600px) {
-            .page { padding: 1.2rem; }
-            .rider-card { padding: 1.3rem; }
-            h2 { font-size: 1.3rem; }
-            .map-embed iframe { height: 180px; }
+        .signature {
+            margin-top: 8px;
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .app { padding: 16px; }
+            .logo-area h1 { font-size: 1.4rem; }
+            .card { padding: 20px; }
+            h2 { font-size: 1.4rem; }
+            .nav-tabs { border-radius: 40px; }
+            .tab-btn { padding: 10px 12px; font-size: 0.75rem; }
+            .flex-card { padding: 20px; }
+            .extras-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-<div class="app-container">
-    <div class="theme-toggle-wrapper">
-        <button id="themeToggleBtn" class="theme-btn"><i class="fas fa-moon"></i> <span id="themeText">Dark Theme</span></button>
+<div class="app">
+    <div class="header-bar">
+        <div class="logo-area">
+            <h1><i class="fas fa-motorcycle"></i> Kumbhe Moto Raid</h1>
+            <p>Pragathi Nagar → Kumbhe Waterfalls | 1,500km • 4 Days • Ancient Tunnels</p>
+            <div class="credit-badge"><i class="fas fa-code-branch"></i> Crafted by Jeshwaanth Varma</div>
+        </div>
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i> <span id="themeLabel">Dark Mode</span></button>
     </div>
-    <!-- Navigation Tabs -->
+
     <div class="nav-tabs">
-        <button class="tab-btn active" data-page="overview"><i class="fas fa-flag-checkered"></i><span>Overview</span></button>
-        <button class="tab-btn" data-page="places"><i class="fas fa-water"></i><span>Places</span></button>
-        <button class="tab-btn" data-page="route"><i class="fas fa-map"></i><span>Route + Maps</span></button>
-        <button class="tab-btn" data-page="pricing"><i class="fas fa-coins"></i><span>Pricing</span></button>
+        <button class="tab-btn active" data-page="overview"><i class="fas fa-flag-checkered"></i> Overview</button>
+        <button class="tab-btn" data-page="places"><i class="fas fa-water"></i> Places & Things</button>
+        <button class="tab-btn" data-page="route"><i class="fas fa-map"></i> Route + Maps</button>
+        <button class="tab-btn" data-page="calculator"><i class="fas fa-calculator"></i> Cost Calculator</button>
     </div>
 
-    <!-- PAGE 1 - OVERVIEW -->
+    <!-- PAGE 1: OVERVIEW (from 1st code) -->
     <div id="overview" class="page active-page">
-        <div class="rider-card">
-            <span class="badge"><i class="fas fa-motorcycle"></i> SAHYADRI RAID</span>
-            <h1 style="font-size: 2rem; margin: 0.6rem 0 0.3rem;">Kumbhe Waterfalls<br>Expedition</h1>
-            <p style="font-size: 1.05rem;">Pragathi Nagar → Kumbhe Plateau. 4 days of raw riding, ancient tunnels, and mist-laden ghats.</p>
-        </div>
-
-        <div class="rider-card">
-            <h2><i class="fas fa-info-circle icon-accent"></i> Ride DNA</h2>
+        <div class="card">
+            <span class="badge"><i class="fas fa-skull-crossbones"></i> THE GREAT SAHYADRI ESCAPE</span>
+            <h2>Expedition Blueprint</h2>
+            <p style="font-size: 1.05rem; margin-bottom: 16px;">A raw 4-day motorcycle journey from Pragathi Nagar, Hyderabad to the hidden gems of Kumbhe Plateau — featuring a 178ft waterfall, an ancient hand-carved tunnel, and the misty Tamhini Ghat. This is not just a ride; it's a full-spectrum adventure through the Sahyadri's best-kept secrets.</p>
             <div class="stat-grid">
-                <div class="stat-item"><i class="fas fa-road fa-lg"></i><br><strong>1,500 km</strong><br>Total Roundtrip</div>
-                <div class="stat-item"><i class="fas fa-clock fa-lg"></i><br><strong>4 Days</strong><br>Epic Timeline</div>
-                <div class="stat-item"><i class="fas fa-mountain fa-lg"></i><br><strong>3,200 ft</strong><br>Elevation gain</div>
+                <div class="stat-card"><i class="fas fa-road"></i><strong>1,500 km</strong>Total Roundtrip</div>
+                <div class="stat-card"><i class="fas fa-clock"></i><strong>4 Days</strong>3 Nights</div>
+                <div class="stat-card"><i class="fas fa-mountain"></i><strong>3,200 ft</strong>Peak Elevation</div>
+                <div class="stat-card"><i class="fas fa-tachometer-alt"></i><strong>Mixed Terrain</strong>Highway + Ghats + Offroad</div>
             </div>
-            <p><i class="fas fa-check-circle icon-accent"></i> <strong>Highlights:</strong> 178ft waterfall plunge • Hand-carved rock tunnel • Tamhini Ghat mist • Devkund lagoon • Nanemachi amphitheater.</p>
         </div>
-
-        <div class="rider-card">
-            <h2><i class="fas fa-calendar-week icon-accent"></i> Day Plan</h2>
-            <div class="route-line"><strong>Day 1:</strong> Pragathi Nagar → Pune (570 km) – NH65 cruise, overnight rider hostel.</div>
-            <div class="route-line"><strong>Day 2:</strong> Pune → Mangaon (130 km) – Tamhini twisties, Devkund trek, riverside camp.</div>
-            <div class="route-line"><strong>Day 3:</strong> Kumbhe core (60 km offroad) – Ancient tunnel, 178ft Kumbhe falls, Nanemachi.</div>
-            <div class="route-line"><strong>Day 4:</strong> Mangaon → Pragathi Nagar (700 km) – early start, victorious return.</div>
+        <div class="card">
+            <h2><i class="fas fa-calendar-week"></i> Daily Itinerary</h2>
+            <div class="route-item"><strong>📅 Day 1 – The Highway Push (570 km)</strong><br>05:00 AM flag-off from Pragathi Nagar (Kukatpally). NH65 express run via Zaheerabad, Solapur. Breakfast at Hotel Sai Palace, Solapur. Fuel stops every 150km. Reach Pune by 5:00 PM. Overnight at Rider's Hostel, Koregaon Park. Evening: bike check, chain lube, group dinner.</div>
+            <div class="route-item"><strong>📅 Day 2 – Into the Wild Ghats (130 km)</strong><br>08:00 AM departure from Pune → Mulshi Dam (photo stop) → Tamhini Ghat (40km of pure twisties, 12 hairpin bends, roadside waterfalls). Reach Mangaon by 2 PM. Devkund trek (3km jungle trail to turquoise lagoon). Overnight riverside camping with bonfire.</div>
+            <div class="route-item"><strong>📅 Day 3 – Kumbhe Core Expedition (60 km offroad)</strong><br>07:00 AM: Ride to Kumbhe base. 10km dirt trail to Ancient Rock Tunnel – a 1km hand-carved cave. After tunnel, ascend to Kumbhe Plateau to witness 178ft waterfall plunge. Packed lunch at falls. Nanemachi Amphitheater (circular rock wall). Return to Mangaon by 6 PM.</div>
+            <div class="route-item"><strong>📅 Day 4 – The Return Flight (700 km)</strong><br>05:00 AM sharp departure. Breakfast at Lonavala. Fuel stops at Pune, Solapur. Reach Pragathi Nagar by 9:00 PM. Victory dinner (optional).</div>
+        </div>
+        <div class="card">
+            <h2><i class="fas fa-toolbox"></i> Mandatory Rider Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+                <div>✅ <strong>Brake pads</strong> (70%+ life for ghat descents)</div>
+                <div>✅ <strong>Rain gear</strong> (Tamhini = sudden rain)</div>
+                <div>✅ <strong>Offline maps</strong> (Download 'Kumbhe' area)</div>
+                <div>✅ <strong>Tire pressure</strong> (reduce 2-3 PSI for offroad)</div>
+                <div>✅ <strong>Tool kit + puncture repair</strong></div>
+                <div>✅ <strong>Hydration pack</strong> (remote sections have no shops)</div>
+                <div>✅ <strong>Auxiliary lights</strong> (essential for dark tunnel)</div>
+                <div>✅ <strong>Action camera</strong> (capture the tunnel exit view)</div>
+            </div>
         </div>
     </div>
 
-    <!-- PAGE 2 - PLACES TO VISIT + TIME + THINGS TO DO -->
+    <!-- PAGE 2: PLACES & THINGS (from 1st code) -->
     <div id="places" class="page">
-        <div class="rider-card">
-            <h2><i class="fas fa-map-pin icon-accent"></i> Signature Spots</h2>
+        <div class="card">
+            <h2><i class="fas fa-map-pin"></i> Signature Landmarks</h2>
             <div class="stat-grid">
-                <div class="stat-item"><i class="fas fa-tint"></i><br><strong>Kumbhe Falls</strong><br>⏱️ 2-3 hrs<br>178ft vertical plunge</div>
-                <div class="stat-item"><i class="fas fa-cave"></i><br><strong>Ancient Tunnel</strong><br>⏱️ 1-1.5 hrs<br>Ride through rock cave</div>
-                <div class="stat-item"><i class="fas fa-chalkboard-user"></i><br><strong>Nanemachi</strong><br>⏱️ 1.5 hrs<br>Hidden amphitheater</div>
+                <div class="stat-card"><i class="fas fa-tint"></i><strong>Kumbhe Falls</strong>⏱️ 2-3 hrs<br>178ft plunge, natural pool</div>
+                <div class="stat-card"><i class="fas fa-cave"></i><strong>Ancient Rock Tunnel</strong>⏱️ 1-1.5 hrs<br>Hand-carved, pitch dark</div>
+                <div class="stat-card"><i class="fas fa-chalkboard-user"></i><strong>Nanemachi</strong>⏱️ 1.5-2 hrs<br>Hidden rock amphitheater</div>
+                <div class="stat-card"><i class="fas fa-tree"></i><strong>Devkund Lagoon</strong>⏱️ 2-3 hrs trek<br>Turquoise secret pool</div>
             </div>
-            <p><i class="fas fa-tree icon-accent"></i> <strong>Devkund Secret Trail:</strong> 2hr jungle trek → turquoise lagoon.<br>
-            <i class="fas fa-cloud-sun icon-accent"></i> <strong>Tamhini Ghat streams:</strong> roadside waterfalls & photo stops.<br>
-            <i class="fas fa-water icon-accent"></i> <strong>Mulshi Dam viewpoint:</strong> 30min scenic break.</p>
+            <p><i class="fas fa-cloud-sun"></i> <strong>Tamhini Ghat:</strong> 40km of misty twisties with roadside waterfalls.<br><i class="fas fa-dam"></i> <strong>Mulshi Dam:</strong> 30min scenic break, great for drone shots.</p>
         </div>
-
-        <div class="rider-card">
-            <h2><i class="fas fa-list-ul icon-accent"></i> Rider’s Bucket List</h2>
-            <ul style="list-style: none; padding-left: 0;">
-                <li style="margin-bottom: 12px;"><i class="fas fa-motorcycle icon-accent"></i> 🔥 Offroad valleys to Kumbhe Plateau</li>
-                <li style="margin-bottom: 12px;"><i class="fas fa-camera icon-accent"></i> 📸 Sunset at 178ft waterfall cliff</li>
-                <li style="margin-bottom: 12px;"><i class="fas fa-hiking icon-accent"></i> 🥾 Devkund trek before 9 AM</li>
-                <li style="margin-bottom: 12px;"><i class="fas fa-fire icon-accent"></i> 🏕️ Riverside campfire & stories</li>
-                <li style="margin-bottom: 12px;"><i class="fas fa-utensils icon-accent"></i> 🍛 Authentic Malvani seafood</li>
-                <li style="margin-bottom: 12px;"><i class="fas fa-tunnel icon-accent"></i> 🚇 Ride through the ancient rock-cut portal</li>
+        <div class="card">
+            <h2><i class="fas fa-list-ul"></i> Ultimate Rider's To-Do List</h2>
+            <ul style="padding-left: 20px; display: flex; flex-direction: column; gap: 12px;">
+                <li><i class="fas fa-motorcycle" style="color: var(--accent);"></i> Conquer the 60km offroad stretch to Kumbhe Plateau</li>
+                <li><i class="fas fa-camera" style="color: var(--accent);"></i> Capture the 178ft waterfall from the cliff edge at golden hour</li>
+                <li><i class="fas fa-hiking" style="color: var(--accent);"></i> Trek to Devkund secret lagoon (start before 9 AM)</li>
+                <li><i class="fas fa-fire" style="color: var(--accent);"></i> Riverside campfire & storytelling with fellow riders</li>
+                <li><i class="fas fa-utensils" style="color: var(--accent);"></i> Authentic Malvani seafood & chai at local dhabas</li>
+                <li><i class="fas fa-tunnel" style="color: var(--accent);"></i> Ride through the 1km dark rock tunnel (use auxiliary lights)</li>
+                <li><i class="fas fa-star" style="color: var(--accent);"></i> Night sky photography at Kumbhe plateau (zero light pollution)</li>
+                <li><i class="fas fa-music" style="color: var(--accent);"></i> Echo challenge at Nanemachi – shout and hear 5 echoes back</li>
             </ul>
         </div>
     </div>
 
-    <!-- PAGE 3 - ROUTE + GOOGLE MAPS (embedded per segment) -->
+    <!-- PAGE 3: ROUTE + MAPS (from 2nd code) -->
     <div id="route" class="page">
-        <div class="rider-card">
-            <h2><i class="fas fa-location-dot icon-accent"></i> Google Maps - Daywise Route</h2>
-            <p>Interactive maps for each major leg. Click & navigate.</p>
-            
-            <div style="margin-top: 1rem;">
-                <div class="badge" style="margin-bottom: 8px;">DAY 1: Pragathi Nagar → Pune (570km)</div>
-                <div class="map-embed">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d242117.6716337382!2d77.2962!3d18.5204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x3bcdba0f6f7f0e1f%3A0x3b3b3b3b3b3b3b3b!2sPragathi%20Nagar%2C%20Hyderabad%2C%20Telangana!4m3!3m2!1d18.5626!2d73.8587!5e0!3m2!1sen!2sin!4v1712345678901!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+        <div class="card">
+            <h3><i class="fas fa-location-dot"></i> Interactive Route Maps</h3>
+            <p>Click on any map or "Open in Maps" button to navigate using Google Maps</p>
+        </div>
+        <div class="map-grid">
+            <div class="map-thumb">
+                <div class="map-img"><i class="fas fa-map-marked-alt"></i></div>
+                <div class="map-info">
+                    <h4>Day 1: Pragathi Nagar → Pune</h4>
+                    <p>570 km • NH65 via Solapur • 8-9 hrs riding</p>
+                    <button class="open-map-btn" onclick="window.open('https://www.google.com/maps/dir/Pragathi+Nagar,+Hyderabad,+Telangana/Pune,+Maharashtra/@18.0074172,74.8186796,8z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x3bcb8e1ce32762b7:0x4d2a4931080222f3!2m2!1d78.3962529!2d17.5186369!1m5!1m1!1s0x3bc2bf2e67461101:0x828d43bf9d9ee343!2m2!1d73.8786239!2d18.5246091!3e9?entry=ttu&g_ep=EgoyMDI2MDUyNi4wIKXMDSoASAFQAw%3D%3D', '_blank')">
+                        <i class="fas fa-external-link-alt"></i> Open in Maps
+                    </button>
                 </div>
-                <p style="font-size: 0.75rem;"><i class="fas fa-route"></i> NH65 → Solapur → Pune. Fuel stops at regular intervals.</p>
             </div>
-
-            <div style="margin-top: 1.2rem;">
-                <div class="badge" style="margin-bottom: 8px;">DAY 2: Pune → Mangaon via Tamhini Ghat (130km)</div>
-                <div class="map-embed">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d242117.6716337382!2d73.5!3d18.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x3bc2c2d2c2d2c2d2%3A0xc2c2c2c2c2c2c2c2!2sPune%2C%20Maharashtra!4m3!3m2!1d18.5626!2d73.8587!5e0!3m2!1sen!2sin!4v1712345678902" allowfullscreen="" loading="lazy"></iframe>
+            <div class="map-thumb">
+                <div class="map-img"><i class="fas fa-mountain"></i></div>
+                <div class="map-info">
+                    <h4>Day 2: Pune → Mangaon</h4>
+                    <p>130 km • Tamhini Ghat twisties • 4-5 hrs</p>
+                    <button class="open-map-btn" onclick="window.open('https://www.google.com/maps/dir/Pune,+Maharashtra/Mangaon,+Maharashtra/@18.3984043,73.4149435,11z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x3bc2bf2e67461101:0x828d43bf9d9ee343!2m2!1d73.8786239!2d18.5246091!1m5!1m1!1s0x3be82ffcdca8ec95:0xfd47c16c1f75f495!2m2!1d73.281696!2d18.2382428!3e9?entry=ttu&g_ep=EgoyMDI2MDUyNi4wIKXMDSoASAFQAw%3D%3D', '_blank')">
+                        <i class="fas fa-external-link-alt"></i> Open in Maps
+                    </button>
                 </div>
-                <p><i class="fas fa-cloud-rain"></i> Tamhini Ghat misty roads, Mulshi enroute.</p>
             </div>
-
-            <div style="margin-top: 1.2rem;">
-                <div class="badge" style="margin-bottom: 8px;">DAY 3: Mangaon → Kumbhe Waterfalls & Nanemachi (Offroad ~60km)</div>
-                <div class="map-embed">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d15165.123456789!2d73.42!3d18.12!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e4!4m5!1s0x3be7a123456789ab%3A0x9876543210fedcba!2sMangaon%2C%20Maharashtra!4m3!3m2!1d18.102!2d73.42!5e0!3m2!1sen!2sin!4v1712345678903" allowfullscreen="" loading="lazy"></iframe>
+            <div class="map-thumb">
+                <div class="map-img"><i class="fas fa-road"></i></div>
+                <div class="map-info">
+                    <h4>Day 3: Mangaon → Kumbhe</h4>
+                    <p>60 km offroad • Ancient Tunnel • 178ft Falls</p>
+                    <button class="open-map-btn" onclick="window.open('https://www.google.com/maps/dir/Mangaon,+Maharashtra/Kumbhe,+Maharashtra+402305/@18.2732295,73.2935147,13z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x3be82ffcdca8ec95:0xfd47c16c1f75f495!2m2!1d73.281696!2d18.2382428!1m5!1m1!1s0x3be826f0cdb33841:0x4254aeeb20448cac!2m2!1d73.3885526!2d18.310237!3e9?entry=ttu&g_ep=EgoyMDI2MDUyNi4wIKXMDSoASAFQAw%3D%3D', '_blank')">
+                        <i class="fas fa-external-link-alt"></i> Open in Maps
+                    </button>
                 </div>
-                <p><i class="fas fa-road"></i> Kumbhe Plateau: Last fuel at Mangaon, ancient tunnel trail.</p>
             </div>
-
-            <div style="margin-top: 1.2rem;">
-                <div class="badge" style="margin-bottom: 8px;">DAY 4: Return Mangaon → Pragathi Nagar (700km)</div>
-                <div class="map-embed">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d242117.6716337382!2d75.3!3d17.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x3bcdba0f6f7f0e1f%3A0x3b3b3b3b3b3b3b3b!2sPragathi%20Nagar%2C%20Hyderabad!4m3!3m2!1d18.5626!2d73.8587!5e0!3m2!1sen!2sin!4v1712345678904" allowfullscreen="" loading="lazy"></iframe>
+            <div class="map-thumb">
+                <div class="map-img"><i class="fas fa-sun"></i></div>
+                <div class="map-info">
+                    <h4>Day 4: Mangaon → Pragathi Nagar</h4>
+                    <p>700 km • Return journey • Early start 5 AM</p>
+                    <button class="open-map-btn" onclick="window.open('https://www.google.com/maps/dir/Mangaon,+Maharashtra/Pragathi+Nagar,+Hyderabad,+Telangana/@17.8649014,74.5198832,8z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x3be82ffcdca8ec95:0xfd47c16c1f75f495!2m2!1d73.281696!2d18.2382428!1m5!1m1!1s0x3bcb8e1ce32762b7:0x4d2a4931080222f3!2m2!1d78.3962529!2d17.5186369!3e9?entry=ttu&g_ep=EgoyMDI2MDUyNi4wIKXMDSoASAFQAw%3D%3D', '_blank')">
+                        <i class="fas fa-external-link-alt"></i> Open in Maps
+                    </button>
                 </div>
-                <p><i class="fas fa-sun"></i> Early departure recommended via Pune – Hyderabad expressway.</p>
             </div>
         </div>
+        <div class="card">
+            <h3><i class="fas fa-exclamation-triangle"></i> Terrain Intelligence</h3>
+            <p><strong>Tamhini Ghat:</strong> Wet, low visibility in rains – use fog lights, reduce speed.</p>
+            <p><strong>Kumbhe Offroad:</strong> Loose gravel, rocky sections, stream crossing. Stand on pegs.</p>
+            <p><strong>Last Fuel:</strong> Mangaon (fill reserve can if possible).</p>
+            <p><strong>Mobile Network:</strong> Patchy beyond Kumbhe base – offline maps essential.</p>
+        </div>
+    </div>
 
-        <div class="rider-card">
-            <h2><i class="fas fa-chart-line icon-accent"></i> Daily Riding Stage</h2>
-            <div style="margin-bottom: 1rem;"><span class="badge" style="background:var(--accent-dark);">DAY 1</span><br>Highway run, 8-9 hrs. Stay: Rider Hub Pune.</div>
-            <div style="margin-bottom: 1rem;"><span class="badge" style="background:var(--accent-dark);">DAY 2</span><br>Tamhini Ghat magic, 4-5 hrs riding + trek. Riverside Camp Mangaon.</div>
-            <div style="margin-bottom: 1rem;"><span class="badge" style="background:var(--accent-dark);">DAY 3</span><br>Offroad & exploration (5-6 hrs), Kumbhe tunnels & falls.</div>
-            <div><span class="badge" style="background:var(--accent-dark);">DAY 4</span><br>Long return, early departure 5 AM.</div>
+    <!-- PAGE 4: COST CALCULATOR (New improved version) -->
+    <div id="calculator" class="page">
+        <div class="calculator-wrapper">
+            <div class="flex-card">
+                <div class="flex-header">
+                    <div class="flex-badge"><i class="fas fa-calculator"></i> RIDE COST CALCULATOR</div>
+                    <h1><i class="fas fa-motorcycle"></i> Kumbhe Moto Cost Builder</h1>
+                    <p>Total cost ÷ Total riders = Cost per rider | Real-time updates</p>
+                </div>
+
+                <!-- SECTION 1: VEHICLE & ROUTE -->
+                <div class="section-title"><i class="fas fa-motorcycle"></i> 1. VEHICLE & ROUTE</div>
+                <div class="input-grid">
+                    <div class="input-field"><label>🏍️ Bike Mileage (km/l)</label><input type="number" id="mileage" value="30" step="1" min="1"></div>
+                    <div class="input-field"><label>📏 Total Distance (km)</label><input type="number" id="distance" value="1500" step="50" min="1"></div>
+                    <div class="input-field"><label>⛽ Fuel Price (₹/litre)</label><input type="number" id="fuelPrice" value="115" step="1" min="1"></div>
+                </div>
+
+                <!-- SECTION 2: BIKES & RIDERS -->
+                <div class="section-title"><i class="fas fa-users"></i> 2. BIKES & RIDERS</div>
+                <div class="input-grid">
+                    <div class="input-field"><label>🏍️ Number of Bikes</label><input type="number" id="numBikes" value="3" step="1" min="1"></div>
+                    <div class="input-field"><label>👥 Total Number of Riders</label><input type="number" id="totalRiders" value="6" step="1" min="1"></div>
+                </div>
+
+                <!-- SECTION 3: ACCOMMODATION -->
+                <div class="section-title"><i class="fas fa-bed"></i> 3. ACCOMMODATION (Per Night)
+                    <button id="addNightBtn" class="btn-icon" style="margin-left: auto;"><i class="fas fa-plus"></i> Add Night</button>
+                </div>
+                <div class="accommodation-section">
+                    <div class="advisor-inside">
+                        <div class="advisor-stats">
+                            <div class="advisor-item">
+                                <div class="advisor-label"><i class="fas fa-users"></i> TOTAL RIDERS</div>
+                                <div class="advisor-value" id="displayTotalRiders">0</div>
+                            </div>
+                            <div class="advisor-item">
+                                <div class="advisor-label"><i class="fas fa-bed"></i> RECOMMENDED ROOMS</div>
+                                <div class="advisor-value" id="recommendedRooms">0</div>
+                            </div>
+                            <div class="advisor-item">
+                                <div class="advisor-label"><i class="fas fa-calculator"></i> FORMULA</div>
+                                <div class="advisor-value" style="font-size: 1rem;">2 riders/room</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="nightsContainer"></div>
+                </div>
+
+                <!-- SECTION 4: FOOD -->
+                <div class="section-title"><i class="fas fa-utensils"></i> 4. FOOD (Per Day — Total for ALL riders)
+                    <button id="addFoodDayBtn" class="btn-icon" style="margin-left: auto;"><i class="fas fa-plus"></i> Add Day</button>
+                </div>
+                <div id="foodContainer"></div>
+
+                <!-- SECTION 5: TOLL -->
+                <div class="section-title"><i class="fas fa-road"></i> 5. TOLL CHARGES</div>
+                <div class="toggle-row">
+                    <div class="toggle-label"><i class="fas fa-toll"></i> Include Toll Charges? (Per bike, per km)</div>
+                    <div id="tollToggle" class="toggle-switch"></div>
+                </div>
+                <div id="tollInputs" style="display: none;">
+                    <div class="input-grid">
+                        <div class="input-field"><label>🛣️ Toll Rate (₹/km per bike)</label><input type="number" id="tollRate" value="0.65" step="0.05" min="0"></div>
+                    </div>
+                </div>
+
+                <!-- SECTION 6: EXTRAS -->
+                <div class="section-title"><i class="fas fa-box"></i> 6. EXTRAS</div>
+                <div class="extras-grid">
+                    <div class="extras-column">
+                        <h4><i class="fas fa-ticket-alt"></i> PERMITS & BUFFER</h4>
+                        <div class="input-field" style="margin-bottom: 12px;">
+                            <label>🎟️ Permits + Guide (₹ total)</label>
+                            <input type="number" id="permitsTotal" value="800" step="100" min="0">
+                        </div>
+                        <div class="input-field" style="margin-bottom: 12px;">
+                            <label>🔧 Buffer Type</label>
+                            <select id="bufferType">
+                                <option value="fixed">Fixed Amount (₹)</option>
+                                <option value="percent">Percentage of Total (%)</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label>💰 Buffer Amount</label>
+                            <input type="number" id="bufferTotal" value="600" step="100" min="0">
+                        </div>
+                    </div>
+                    
+                    <div class="extras-column">
+                        <h4><i class="fas fa-plus-circle"></i> CUSTOM EXPENSE</h4>
+                        <div class="input-field" style="margin-bottom: 12px;">
+                            <label>📝 Custom Label</label>
+                            <input type="text" id="customLabel" placeholder="e.g., Parking, Gear" value="">
+                        </div>
+                        <div class="input-field">
+                            <label>💰 Custom Amount (₹ total)</label>
+                            <input type="number" id="customAmount" value="0" step="100" min="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BREAKDOWN -->
+                <div class="breakdown-panel">
+                    <div class="break-row"><span>⛽ FUEL (Total)</span><span id="totalFuelCostSpan" class="accent-value">₹0</span></div>
+                    <div class="break-row" id="tollRow" style="display: none;"><span>🛣️ TOLL CHARGES (Total)</span><span id="totalTollCostSpan" class="accent-value">₹0</span></div>
+                    <div class="break-row"><span>🏨 ACCOMMODATION (Total)</span><span id="totalAccommodationSpan">₹0</span></div>
+                    <div class="break-row"><span>🍽️ FOOD (Total)</span><span id="totalFoodSpan">₹0</span></div>
+                    <div class="break-row"><span>🎟️ PERMITS + GUIDE (Total)</span><span id="totalPermitsSpan">₹0</span></div>
+                    <div class="break-row"><span>🔧 EMERGENCY BUFFER (Total)</span><span id="totalBufferSpan">₹0</span></div>
+                    <div class="break-row" id="customRow" style="display: none;"><span id="customLabelSpan">Custom (Total)</span><span id="totalCustomSpan">₹0</span></div>
+                    <div class="break-row"><span>👥 TOTAL RIDERS</span><span id="totalRidersDisplayBottom">0</span></div>
+                    <div class="total-row"><span>💰 TOTAL PER RIDER</span><span id="totalVal" style="color: var(--accent); font-size: 1.4rem;">₹0</span></div>
+                </div>
+
+                <div class="btn-group">
+                    <button id="calculateBtn" class="btn"><i class="fas fa-sync-alt"></i> Recalculate</button>
+                    <button id="saveBtn" class="btn btn-outline"><i class="fas fa-save"></i> Save Trip</button>
+                    <button id="downloadBtn" class="btn btn-outline"><i class="fas fa-download"></i> Download Breakdown</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- PAGE 4 - PRICING + FUEL CALCULATOR (₹115/L) + DOWNLOAD -->
-    <div id="pricing" class="page">
-        <div class="rider-card">
-            <h2><i class="fas fa-calculator icon-accent"></i> Expedition Cost Wizard</h2>
-            <p style="margin-bottom: 10px;">Fuel at <strong>₹115 / litre</strong> (today's rate). Customize group size.</p>
-            <div class="pricing-input-group">
-                <label><i class="fas fa-tachometer-alt"></i> Bike mileage (km/l):</label>
-                <input type="number" id="mileage" value="30" step="1" min="15">
-                <label style="margin-top: 14px;"><i class="fas fa-route"></i> Total round trip distance (km):</label>
-                <input type="number" id="distance" value="1500" step="50">
-                <label style="margin-top: 14px;"><i class="fas fa-users"></i> Number of riders (sharing):</label>
-                <input type="number" id="ridersCount" value="1" min="1">
-                <label style="margin-top: 14px;"><i class="fas fa-bed"></i> Accommodation total (₹ for group):</label>
-                <input type="number" id="groupStay" value="3900" step="200">
-                <label style="margin-top: 14px;"><i class="fas fa-utensils"></i> Meals total for group (₹):</label>
-                <input type="number" id="groupMeals" value="2200" step="200">
-                <label style="margin-top: 14px;"><i class="fas fa-ticket-alt"></i> Permits + Local Guide (group):</label>
-                <input type="number" id="groupPermits" value="800" step="100">
-                <label style="margin-top: 14px;"><i class="fas fa-wrench"></i> Buffer/Emergency (group):</label>
-                <input type="number" id="groupBuffer" value="600" step="100">
-            </div>
-            <button id="calculatePriceBtn" class="btn-primary"><i class="fas fa-sync-alt"></i> Refresh Breakdown</button>
-
-            <div id="priceBreakdownContainer" class="price-breakdown-card" style="margin-top: 1.4rem;">
-                <div><strong>💸 PER RIDER COST BREAKDOWN</strong></div>
-                <div id="breakdownInner" style="margin: 12px 0;"></div>
-                <hr>
-                <div style="font-size: 1.4rem; font-weight:800; display: flex; justify-content: space-between;">
-                    <span>Total per Rider:</span>
-                    <span id="totalPerRiderFinal" style="color:var(--accent);">₹0</span>
-                </div>
-                <p class="fuel-note" style="margin-top: 10px;"><i class="fas fa-gas-pump"></i> Fuel = (distance / mileage) × ₹115/L, split equally.</p>
-            </div>
-
-            <button id="downloadPriceBtn" class="btn-primary" style="background: var(--accent-dark); margin-top: 1.2rem;"><i class="fas fa-download"></i> Download Price Breakdown (.txt)</button>
-        </div>
-
-        <div class="rider-card">
-            <h2><i class="fas fa-hotel icon-accent"></i> Stay Options (Reference)</h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between;">
-                <div><i class="fas fa-tent"></i> Riverside Camp: ₹1,200/night pp</div>
-                <div><i class="fas fa-home"></i> Jungle Homestay: ₹1,800/night pp</div>
-                <div><i class="fas fa-motorcycle"></i> Rider Hostel Pune: ₹900/night</div>
-            </div>
-            <hr>
-            <p><i class="fas fa-coffee"></i> Meal estimate: ₹550/day per person • Permits + tunnel guide group fee ₹800</p>
-        </div>
-    </div>
     <footer>
-        <i class="fas fa-motorcycle"></i> Kumbhe Waterfalls Expedition | Live Google Maps • Fuel @ ₹115/L dynamic
+        <i class="fas fa-motorcycle"></i> Kumbhe Waterfalls Motorcycle Expedition<br>
+        <span class="signature">Developed with dedication by <strong>Jeshwaanth Varma</strong> | Every line crafted for perfect ride planning</span>
     </footer>
 </div>
 
 <script>
-    // LIGHT / DARK THEME TOGGLE
-    const themeBtn = document.getElementById('themeToggleBtn');
-    const themeTextSpan = document.getElementById('themeText');
-    function toggleTheme() {
-        document.body.classList.toggle('light-theme');
-        const isLight = document.body.classList.contains('light-theme');
-        if (isLight) {
-            themeTextSpan.innerHTML = 'Light Theme';
-            themeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Theme';
-        } else {
-            themeTextSpan.innerHTML = 'Dark Theme';
-            themeBtn.innerHTML = '<i class="fas fa-moon"></i> Dark Theme';
-        }
-    }
-    themeBtn.addEventListener('click', toggleTheme);
-    // default dark
-    document.body.classList.remove('light-theme');
-
-    // Multi-page navigation
-    const tabs = document.querySelectorAll('.tab-btn');
-    const pages = document.querySelectorAll('.page');
-    function switchPage(pageId) {
-        pages.forEach(page => page.classList.remove('active-page'));
-        document.getElementById(pageId).classList.add('active-page');
-        tabs.forEach(btn => {
-            btn.classList.remove('active');
-            if(btn.getAttribute('data-page') === pageId) btn.classList.add('active');
-        });
-    }
-    tabs.forEach(btn => {
-        btn.addEventListener('click', () => switchPage(btn.getAttribute('data-page')));
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeLabel = document.getElementById('themeLabel');
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light');
+        const isLight = document.body.classList.contains('light');
+        themeLabel.innerText = isLight ? 'Light Mode' : 'Dark Mode';
+        themeToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i> Light Mode' : '<i class="fas fa-moon"></i> Dark Mode';
     });
 
-    // Pricing calculator with ₹115 fuel price
+    // Tab Navigation
+    const tabs = document.querySelectorAll('.tab-btn');
+    const pages = document.querySelectorAll('.page');
+    tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const pageId = btn.getAttribute('data-page');
+            pages.forEach(p => p.classList.remove('active-page'));
+            document.getElementById(pageId).classList.add('active-page');
+            tabs.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+
+    // ========== CALCULATOR LOGIC ==========
+    // DOM Elements
     const mileageInput = document.getElementById('mileage');
     const distanceInput = document.getElementById('distance');
-    const ridersCountInput = document.getElementById('ridersCount');
-    const groupStayInput = document.getElementById('groupStay');
-    const groupMealsInput = document.getElementById('groupMeals');
-    const groupPermitsInput = document.getElementById('groupPermits');
-    const groupBufferInput = document.getElementById('groupBuffer');
-    const breakdownInner = document.getElementById('breakdownInner');
-    const totalPerRiderSpan = document.getElementById('totalPerRiderFinal');
-    const FUEL_RATE = 115;
-
-    function updatePriceBreakdown() {
-        let mileage = parseFloat(mileageInput.value) || 30;
-        let distance = parseFloat(distanceInput.value) || 1500;
-        let riders = parseInt(ridersCountInput.value) || 1;
-        let groupStay = parseFloat(groupStayInput.value) || 0;
-        let groupMeals = parseFloat(groupMealsInput.value) || 0;
-        let groupPermits = parseFloat(groupPermitsInput.value) || 0;
-        let groupBuffer = parseFloat(groupBufferInput.value) || 0;
-        if (riders < 1) riders = 1;
-        if (mileage < 1) mileage = 25;
-
-        let totalLitres = distance / mileage;
-        let totalFuelCost = totalLitres * FUEL_RATE;
-        let fuelPerPerson = totalFuelCost / riders;
-        let stayPerPerson = groupStay / riders;
-        let mealsPerPerson = groupMeals / riders;
-        let permitsPerPerson = groupPermits / riders;
-        let bufferPerPerson = groupBuffer / riders;
-        let grandTotal = fuelPerPerson + stayPerPerson + mealsPerPerson + permitsPerPerson + bufferPerPerson;
-
-        breakdownInner.innerHTML = `
-            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span>⛽ Fuel (${totalLitres.toFixed(1)}L @ ₹${FUEL_RATE}/L)</span><span>₹${fuelPerPerson.toFixed(0)}</span></div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span>🏕️ Stay (group ₹${groupStay.toFixed(0)})</span><span>₹${stayPerPerson.toFixed(0)}</span></div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span>🍽️ Meals (group)</span><span>₹${mealsPerPerson.toFixed(0)}</span></div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span>🎟️ Permits+Guide</span><span>₹${permitsPerPerson.toFixed(0)}</span></div>
-            <div style="display: flex; justify-content: space-between;"><span>🔧 Emergency Buffer</span><span>₹${bufferPerPerson.toFixed(0)}</span></div>
-        `;
-        totalPerRiderSpan.innerText = `₹${Math.round(grandTotal)}`;
+    const fuelPriceInput = document.getElementById('fuelPrice');
+    const numBikesInput = document.getElementById('numBikes');
+    const totalRidersInput = document.getElementById('totalRiders');
+    
+    const displayTotalRiders = document.getElementById('displayTotalRiders');
+    const recommendedRoomsSpan = document.getElementById('recommendedRooms');
+    const totalRidersDisplayBottom = document.getElementById('totalRidersDisplayBottom');
+    
+    const nightsContainer = document.getElementById('nightsContainer');
+    const foodContainer = document.getElementById('foodContainer');
+    
+    const permitsTotalInput = document.getElementById('permitsTotal');
+    const bufferTotalInput = document.getElementById('bufferTotal');
+    const bufferTypeSelect = document.getElementById('bufferType');
+    const customLabelInput = document.getElementById('customLabel');
+    const customAmountInput = document.getElementById('customAmount');
+    const customLabelSpan = document.getElementById('customLabelSpan');
+    const customRow = document.getElementById('customRow');
+    
+    const tollToggle = document.getElementById('tollToggle');
+    const tollInputs = document.getElementById('tollInputs');
+    const tollRateInput = document.getElementById('tollRate');
+    const tollRow = document.getElementById('tollRow');
+    
+    const totalFuelCostSpan = document.getElementById('totalFuelCostSpan');
+    const totalTollCostSpan = document.getElementById('totalTollCostSpan');
+    const totalAccommodationSpan = document.getElementById('totalAccommodationSpan');
+    const totalFoodSpan = document.getElementById('totalFoodSpan');
+    const totalPermitsSpan = document.getElementById('totalPermitsSpan');
+    const totalBufferSpan = document.getElementById('totalBufferSpan');
+    const totalCustomSpan = document.getElementById('totalCustomSpan');
+    const totalValSpan = document.getElementById('totalVal');
+    
+    const calculateBtn = document.getElementById('calculateBtn');
+    const saveBtn = document.getElementById('saveBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const addNightBtn = document.getElementById('addNightBtn');
+    const addFoodDayBtn = document.getElementById('addFoodDayBtn');
+    
+    let isTollEnabled = false;
+    let nightCount = 0;
+    let foodDayCount = 0;
+    
+    function formatCurrency(amount) {
+        return '₹' + Math.round(amount).toLocaleString('en-IN');
     }
+    
+    function validateNumber(value, defaultValue = 0) {
+        let num = parseFloat(value);
+        return isNaN(num) || num < 0 ? defaultValue : num;
+    }
+    
+    function getRecommendedRooms(totalRiders) {
+        return Math.ceil(totalRiders / 2);
+    }
+    
+    function updateAdvisorAndRooms() {
+        let totalRiders = validateNumber(totalRidersInput.value, 1);
+        if (totalRiders < 1) totalRiders = 1;
+        
+        const recommended = getRecommendedRooms(totalRiders);
+        
+        displayTotalRiders.textContent = totalRiders;
+        recommendedRoomsSpan.textContent = recommended;
+        totalRidersDisplayBottom.textContent = totalRiders;
+        
+        const nights = document.querySelectorAll('#nightsContainer .night-input-row');
+        nights.forEach(night => {
+            const roomsInput = night.querySelector('.night-rooms');
+            if (roomsInput && parseInt(roomsInput.value) !== recommended) {
+                roomsInput.value = recommended;
+            }
+        });
+        
+        return recommended;
+    }
+    
+    function addNight(price = 900) {
+        nightCount++;
+        const totalRiders = validateNumber(totalRidersInput.value, 1);
+        const recommended = getRecommendedRooms(totalRiders);
+        
+        const nightDiv = document.createElement('div');
+        nightDiv.className = 'night-input-row';
+        nightDiv.setAttribute('data-night-idx', nightCount);
+        nightDiv.innerHTML = `
+            <div class="night-input">
+                <label>🌙 Night ${nightCount} — Rooms (Auto: ${recommended})</label>
+                <input type="number" class="night-rooms" value="${recommended}" step="1" min="0" readonly style="background:var(--stat-bg); color:var(--accent);">
+            </div>
+            <div class="night-input">
+                <label>💰 Night ${nightCount} — ₹ per Room</label>
+                <input type="number" class="night-price" value="${price}" step="100" min="0">
+            </div>
+            <button class="btn-icon btn-icon-danger remove-night"><i class="fas fa-trash"></i> Remove</button>
+        `;
+        nightsContainer.appendChild(nightDiv);
+        
+        nightDiv.querySelector('.remove-night').addEventListener('click', () => {
+            nightDiv.remove();
+            recalculateNightNumbers();
+            calculateEverything();
+        });
+        
+        nightDiv.querySelectorAll('.night-price').forEach(input => {
+            input.addEventListener('input', () => calculateEverything());
+        });
+    }
+    
+    function recalculateNightNumbers() {
+        const nights = document.querySelectorAll('#nightsContainer .night-input-row');
+        const totalRiders = validateNumber(totalRidersInput.value, 1);
+        const recommended = getRecommendedRooms(totalRiders);
+        
+        nightCount = 0;
+        nights.forEach((night, idx) => {
+            nightCount++;
+            night.setAttribute('data-night-idx', nightCount);
+            const label = night.querySelector('.night-input label');
+            if (label) label.innerHTML = `🌙 Night ${nightCount} — Rooms (Auto: ${recommended})`;
+            
+            const roomsInput = night.querySelector('.night-rooms');
+            if (roomsInput && parseInt(roomsInput.value) !== recommended) {
+                roomsInput.value = recommended;
+            }
+        });
+    }
+    
+    function addFoodDay(amount = 2000) {
+        foodDayCount++;
+        const foodDiv = document.createElement('div');
+        foodDiv.className = 'food-input-row';
+        foodDiv.setAttribute('data-day-idx', foodDayCount);
+        foodDiv.innerHTML = `
+            <div class="food-input">
+                <label>🍽️ Day ${foodDayCount} — Food (₹ total group)</label>
+                <input type="number" class="food-amount" value="${amount}" step="100" min="0">
+            </div>
+            <button class="btn-icon btn-icon-danger remove-food"><i class="fas fa-trash"></i> Remove</button>
+        `;
+        foodContainer.appendChild(foodDiv);
+        
+        foodDiv.querySelector('.remove-food').addEventListener('click', () => {
+            foodDiv.remove();
+            recalculateFoodDayNumbers();
+            calculateEverything();
+        });
+        
+        foodDiv.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', () => calculateEverything());
+        });
+    }
+    
+    function recalculateFoodDayNumbers() {
+        const foods = document.querySelectorAll('#foodContainer .food-input-row');
+        foodDayCount = 0;
+        foods.forEach((food, idx) => {
+            foodDayCount++;
+            food.setAttribute('data-day-idx', foodDayCount);
+            const label = food.querySelector('.food-input label');
+            if (label) label.innerHTML = `🍽️ Day ${foodDayCount} — Food (₹ total group)`;
+        });
+    }
+    
+    function getTotalAccommodation() {
+        const nights = document.querySelectorAll('#nightsContainer .night-input-row');
+        let total = 0;
+        
+        nights.forEach(night => {
+            const rooms = validateNumber(night.querySelector('.night-rooms')?.value);
+            const pricePerRoom = validateNumber(night.querySelector('.night-price')?.value);
+            total += rooms * pricePerRoom;
+        });
+        
+        return total;
+    }
+    
+    function getTotalFood() {
+        const foods = document.querySelectorAll('#foodContainer .food-input-row');
+        let total = 0;
+        foods.forEach(food => {
+            const amount = validateNumber(food.querySelector('.food-amount')?.value);
+            total += amount;
+        });
+        return total;
+    }
+    
+    function calculateEverything() {
+        let mileage = validateNumber(mileageInput.value, 30);
+        let distance = validateNumber(distanceInput.value, 1500);
+        let fuelPrice = validateNumber(fuelPriceInput.value, 115);
+        let numBikes = validateNumber(numBikesInput.value, 1);
+        let totalRiders = validateNumber(totalRidersInput.value, 1);
+        
+        if (mileage <= 0) mileage = 1;
+        if (distance <= 0) distance = 1;
+        if (fuelPrice <= 0) fuelPrice = 1;
+        if (numBikes <= 0) numBikes = 1;
+        if (totalRiders <= 0) totalRiders = 1;
+        
+        // FUEL CALCULATION - TOTAL COST
+        let fuelPerBike = distance / mileage;
+        let totalFuelLitres = fuelPerBike * numBikes;
+        let totalFuelCost = totalFuelLitres * fuelPrice;
+        
+        // TOLL - TOTAL COST
+        let totalTollCost = 0;
+        if (isTollEnabled) {
+            let tollRate = validateNumber(tollRateInput.value, 0.65);
+            let tollPerBike = distance * tollRate;
+            totalTollCost = tollPerBike * numBikes;
+        }
+        
+        // ACCOMMODATION - TOTAL COST
+        let totalAccommodation = getTotalAccommodation();
+        
+        // FOOD - TOTAL COST
+        let totalFood = getTotalFood();
+        
+        // PERMITS - TOTAL COST
+        let permitsTotal = validateNumber(permitsTotalInput.value);
+        
+        // BUFFER - TOTAL COST
+        let bufferAmount = validateNumber(bufferTotalInput.value);
+        let bufferType = bufferTypeSelect.value;
+        let totalBuffer = 0;
+        
+        if (bufferType === 'percent') {
+            let subtotal = totalFuelCost + totalTollCost + totalAccommodation + totalFood + permitsTotal;
+            totalBuffer = subtotal * bufferAmount / 100;
+        } else {
+            totalBuffer = bufferAmount;
+        }
+        
+        // CUSTOM - TOTAL COST
+        let customAmount = validateNumber(customAmountInput.value);
+        let customLabel = customLabelInput.value.trim() || "Custom Expense";
+        
+        // GRAND TOTAL COST
+        let grandTotalCost = totalFuelCost + totalTollCost + totalAccommodation + totalFood + permitsTotal + totalBuffer + customAmount;
+        
+        // COST PER RIDER = GRAND TOTAL ÷ TOTAL RIDERS
+        let costPerRider = grandTotalCost / totalRiders;
+        
+        // UPDATE UI - SHOW TOTAL COSTS
+        totalFuelCostSpan.innerHTML = formatCurrency(totalFuelCost);
+        totalAccommodationSpan.innerHTML = formatCurrency(totalAccommodation);
+        totalFoodSpan.innerHTML = formatCurrency(totalFood);
+        totalPermitsSpan.innerHTML = formatCurrency(permitsTotal);
+        totalBufferSpan.innerHTML = formatCurrency(totalBuffer);
+        totalValSpan.innerHTML = formatCurrency(costPerRider);
+        totalRidersDisplayBottom.textContent = totalRiders;
+        
+        if (isTollEnabled && totalTollCost > 0) {
+            tollRow.style.display = 'flex';
+            totalTollCostSpan.innerHTML = formatCurrency(totalTollCost);
+        } else {
+            tollRow.style.display = 'none';
+        }
+        
+        if (customAmount > 0) {
+            customRow.style.display = 'flex';
+            customLabelSpan.innerHTML = customLabel + " (Total)";
+            totalCustomSpan.innerHTML = formatCurrency(customAmount);
+        } else {
+            customRow.style.display = 'none';
+        }
+    }
+    
+    function saveTrip() {
+        const nights = [];
+        document.querySelectorAll('#nightsContainer .night-input-row').forEach(night => {
+            nights.push({
+                price: validateNumber(night.querySelector('.night-price')?.value)
+            });
+        });
+        
+        const foods = [];
+        document.querySelectorAll('#foodContainer .food-input-row').forEach(food => {
+            foods.push(validateNumber(food.querySelector('.food-amount')?.value));
+        });
+        
+        const tripData = {
+            mileage: mileageInput.value,
+            distance: distanceInput.value,
+            fuelPrice: fuelPriceInput.value,
+            numBikes: numBikesInput.value,
+            totalRiders: totalRidersInput.value,
+            nights: nights,
+            foods: foods,
+            permitsTotal: permitsTotalInput.value,
+            bufferTotal: bufferTotalInput.value,
+            bufferType: bufferTypeSelect.value,
+            customLabel: customLabelInput.value,
+            customAmount: customAmountInput.value,
+            isTollEnabled: isTollEnabled,
+            tollRate: tollRateInput.value
+        };
+        
+        localStorage.setItem('kumbheMotoTrip', JSON.stringify(tripData));
+        alert('✓ Trip saved successfully!');
+    }
+    
+    function loadSavedTrip() {
+        const saved = localStorage.getItem('kumbheMotoTrip');
+        if (!saved) {
+            alert('No saved trip found! Create one by clicking "Save Trip" first.');
+            return false;
+        }
+        
+        const tripData = JSON.parse(saved);
+        
+        mileageInput.value = tripData.mileage || 30;
+        distanceInput.value = tripData.distance || 1500;
+        fuelPriceInput.value = tripData.fuelPrice || 115;
+        numBikesInput.value = tripData.numBikes || 3;
+        totalRidersInput.value = tripData.totalRiders || 6;
+        permitsTotalInput.value = tripData.permitsTotal || 800;
+        bufferTotalInput.value = tripData.bufferTotal || 600;
+        bufferTypeSelect.value = tripData.bufferType || 'fixed';
+        customLabelInput.value = tripData.customLabel || '';
+        customAmountInput.value = tripData.customAmount || 0;
+        tollRateInput.value = tripData.tollRate || 0.65;
+        
+        nightsContainer.innerHTML = '';
+        nightCount = 0;
+        if (tripData.nights && tripData.nights.length > 0) {
+            tripData.nights.forEach(night => {
+                addNight(night.price || 900);
+            });
+        } else {
+            addNight(900);
+            addNight(1200);
+            addNight(1500);
+        }
+        
+        foodContainer.innerHTML = '';
+        foodDayCount = 0;
+        if (tripData.foods && tripData.foods.length > 0) {
+            tripData.foods.forEach(food => {
+                addFoodDay(food || 2000);
+            });
+        } else {
+            addFoodDay(1800);
+            addFoodDay(2200);
+            addFoodDay(2500);
+            addFoodDay(1500);
+        }
+        
+        isTollEnabled = tripData.isTollEnabled || false;
+        if (isTollEnabled) {
+            tollToggle.classList.add('active');
+            tollInputs.style.display = 'grid';
+        } else {
+            tollToggle.classList.remove('active');
+            tollInputs.style.display = 'none';
+        }
+        
+        updateAdvisorAndRooms();
+        calculateEverything();
+        alert('✓ Trip loaded successfully!');
+        return true;
+    }
+    
+    // Toll Toggle
+    tollToggle.addEventListener('click', () => {
+        isTollEnabled = !isTollEnabled;
+        if (isTollEnabled) {
+            tollToggle.classList.add('active');
+            tollInputs.style.display = 'grid';
+        } else {
+            tollToggle.classList.remove('active');
+            tollInputs.style.display = 'none';
+        }
+        calculateEverything();
+    });
+    
+    // Input listeners
+    const inputs = [mileageInput, distanceInput, fuelPriceInput, numBikesInput, totalRidersInput,
+                    permitsTotalInput, bufferTotalInput, bufferTypeSelect, customLabelInput, customAmountInput, tollRateInput];
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+            if (input.id === 'totalRidersInput' || input.id === 'numBikesInput') {
+                updateAdvisorAndRooms();
+            }
+            calculateEverything();
+        });
+    });
+    
+    // Button listeners
+    addNightBtn.addEventListener('click', () => addNight(1000));
+    addFoodDayBtn.addEventListener('click', () => addFoodDay(2000));
+    calculateBtn.addEventListener('click', () => {
+        updateAdvisorAndRooms();
+        calculateEverything();
+    });
+    saveBtn.addEventListener('click', saveTrip);
+    
+    // Download Breakdown
+    downloadBtn.addEventListener('click', () => {
+        const totalRiders = validateNumber(totalRidersInput.value, 1);
+        const recommended = getRecommendedRooms(totalRiders);
+        const date = new Date().toLocaleString();
+        
+        let totalFuelCost = 0;
+        let mileage = validateNumber(mileageInput.value, 30);
+        let distance = validateNumber(distanceInput.value, 1500);
+        let fuelPrice = validateNumber(fuelPriceInput.value, 115);
+        let numBikes = validateNumber(numBikesInput.value, 1);
+        if (mileage > 0 && distance > 0) {
+            totalFuelCost = (distance / mileage) * numBikes * fuelPrice;
+        }
+        
+        let totalTollCost = 0;
+        if (isTollEnabled) {
+            let tollRate = validateNumber(tollRateInput.value, 0.65);
+            totalTollCost = distance * tollRate * numBikes;
+        }
+        
+        let totalAccommodation = getTotalAccommodation();
+        let totalFood = getTotalFood();
+        let permitsTotal = validateNumber(permitsTotalInput.value);
+        let totalBuffer = 0;
+        let bufferAmount = validateNumber(bufferTotalInput.value);
+        let bufferType = bufferTypeSelect.value;
+        if (bufferType === 'percent') {
+            let subtotal = totalFuelCost + totalTollCost + totalAccommodation + totalFood + permitsTotal;
+            totalBuffer = subtotal * bufferAmount / 100;
+        } else {
+            totalBuffer = bufferAmount;
+        }
+        let customAmount = validateNumber(customAmountInput.value);
+        let customLabel = customLabelInput.value.trim() || "Custom Expense";
+        let grandTotal = totalFuelCost + totalTollCost + totalAccommodation + totalFood + permitsTotal + totalBuffer + customAmount;
+        let costPerRider = grandTotal / totalRiders;
+        
+        let nightsText = '';
+        const nightsList = document.querySelectorAll('#nightsContainer .night-input-row');
+        if (nightsList.length === 0) {
+            nightsText = 'No nights added\n';
+        } else {
+            nightsList.forEach((night, idx) => {
+                const rooms = validateNumber(night.querySelector('.night-rooms')?.value);
+                const price = validateNumber(night.querySelector('.night-price')?.value);
+                nightsText += `Night ${idx + 1}: ${rooms} rooms × ₹${price} = ₹${rooms * price}\n`;
+            });
+        }
+        
+        let foodText = '';
+        const foodsList = document.querySelectorAll('#foodContainer .food-input-row');
+        if (foodsList.length === 0) {
+            foodText = 'No food days added\n';
+        } else {
+            foodsList.forEach((food, idx) => {
+                const amount = validateNumber(food.querySelector('.food-amount')?.value);
+                foodText += `Day ${idx + 1}: ₹${amount}\n`;
+            });
+        }
+        
+        let content = `KUMBHE MOTORCYCLE EXPEDITION COST BREAKDOWN
+Generated: ${date}
 
-    const allPriceInputs = [mileageInput, distanceInput, ridersCountInput, groupStayInput, groupMealsInput, groupPermitsInput, groupBufferInput];
-    allPriceInputs.forEach(inp => inp.addEventListener('input', updatePriceBreakdown));
-    document.getElementById('calculatePriceBtn').addEventListener('click', updatePriceBreakdown);
-    updatePriceBreakdown();
+============================================================
 
-    // Download breakdown
-    function downloadBreakdownTxt() {
-        let mileage = parseFloat(mileageInput.value) || 30;
-        let distance = parseFloat(distanceInput.value) || 1500;
-        let riders = parseInt(ridersCountInput.value) || 1;
-        let groupStay = parseFloat(groupStayInput.value) || 0;
-        let groupMeals = parseFloat(groupMealsInput.value) || 0;
-        let groupPermits = parseFloat(groupPermitsInput.value) || 0;
-        let groupBuffer = parseFloat(groupBufferInput.value) || 0;
-        let totalLitres = distance / mileage;
-        let totalFuelCost = totalLitres * FUEL_RATE;
-        let fuelPerPerson = totalFuelCost / riders;
-        let stayPerPerson = groupStay / riders;
-        let mealsPerPerson = groupMeals / riders;
-        let permitsPerPerson = groupPermits / riders;
-        let bufferPerPerson = groupBuffer / riders;
-        let totalPer = fuelPerPerson + stayPerPerson + mealsPerPerson + permitsPerPerson + bufferPerPerson;
-        let dateStr = new Date().toLocaleString();
+TRIP PARAMETERS
+------------------------------------------------------------
+Bike Mileage: ${mileage} km/l
+Total Distance: ${distance} km
+Fuel Price: ₹${fuelPrice}/L
+Number of Bikes: ${numBikes}
+Total Riders: ${totalRiders}
+Recommended Rooms (2 per room): ${recommended}
+Toll Included: ${isTollEnabled ? 'YES' : 'NO'}
 
-        const content = `===========================================
-🏍️ KUMBHE WATERFALLS MOTORCYCLE EXPEDITION
-      PRICE BREAKDOWN (FUEL ₹115/L)
-===========================================
-📅 ${dateStr}
-👥 Riders sharing: ${riders}
-⛽ Fuel rate: ₹${FUEL_RATE}/L | Mileage: ${mileage} km/l
-📏 Total distance: ${distance} km
--------------------------------------------
-🔹 TOTAL FUEL: ${totalLitres.toFixed(1)} L → ₹${totalFuelCost.toFixed(0)} (group)
-   ➤ per rider: ₹${fuelPerPerson.toFixed(0)}
-🔹 Accommodation (group): ₹${groupStay.toFixed(0)} → per rider: ₹${stayPerPerson.toFixed(0)}
-🔹 Meals (group): ₹${groupMeals.toFixed(0)} → per rider: ₹${mealsPerPerson.toFixed(0)}
-🔹 Permits + Guide: ₹${groupPermits.toFixed(0)} → per rider: ₹${permitsPerPerson.toFixed(0)}
-🔹 Buffer / Emergency: ₹${groupBuffer.toFixed(0)} → per rider: ₹${bufferPerPerson.toFixed(0)}
--------------------------------------------
-💰 TOTAL EXPEDITION COST PER RIDER: ₹${Math.round(totalPer)}
--------------------------------------------
-✅ Includes: Fuel, shared stays, meals, local tunnel guide, permits.
-🗺️ Google Maps embedded for each route day.
-🏁 Ride safe, explore the ancient tunnel & 178ft falls!
-#KumbheMotoExpedition`;
-        const blob = new Blob([content], {type: 'text/plain'});
+============================================================
+
+ACCOMMODATION (${nightsList.length} nights)
+------------------------------------------------------------
+${nightsText}Total Accommodation: ₹${Math.round(totalAccommodation)}
+
+============================================================
+
+FOOD (${foodsList.length} days)
+------------------------------------------------------------
+${foodText}Total Food: ₹${Math.round(totalFood)}
+
+============================================================
+
+COST BREAKDOWN (Total Costs)
+------------------------------------------------------------
+Fuel: ${formatCurrency(totalFuelCost)}
+${isTollEnabled ? `Toll: ${formatCurrency(totalTollCost)}` : ''}
+Accommodation: ${formatCurrency(totalAccommodation)}
+Food: ${formatCurrency(totalFood)}
+Permits + Guide: ${formatCurrency(permitsTotal)}
+Emergency Buffer: ${formatCurrency(totalBuffer)} (${bufferType === 'percent' ? `${bufferAmount}% of subtotal` : `Fixed ₹${bufferAmount}`})
+${customAmount > 0 ? `Custom (${customLabel}): ${formatCurrency(customAmount)}` : ''}
+------------------------------------------------------------
+GRAND TOTAL COST: ${formatCurrency(grandTotal)}
+
+============================================================
+
+PER RIDER BREAKDOWN
+------------------------------------------------------------
+Total Riders: ${totalRiders}
+Cost Per Rider = Grand Total ÷ Total Riders
+${formatCurrency(grandTotal)} ÷ ${totalRiders} = ${formatCurrency(costPerRider)}
+
+============================================================
+TOTAL PER RIDER: ${formatCurrency(costPerRider)}
+============================================================
+
+------------------------------------------------------------
+Developed by: Jeshwaanth Varma
+Built with a lot of efforts, dedication and hard work
+Every line of code crafted for perfect ride cost calculation
+------------------------------------------------------------
+
+Thank you for using Kumbhe Moto Cost Builder!`;
+        
+        const blob = new Blob([content], { type: 'text/plain' });
         const a = document.createElement('a');
         const url = URL.createObjectURL(blob);
         a.href = url;
-        a.download = `kumbhe_price_${Date.now()}.txt`;
+        a.download = `KumbheMoto_${Date.now()}.txt`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+    });
+    
+    // Create default nights and food days
+    addNight(900);
+    addNight(1200);
+    addNight(1500);
+    
+    addFoodDay(1800);
+    addFoodDay(2200);
+    addFoodDay(2500);
+    addFoodDay(1500);
+    
+    // Update advisor display and calculate
+    updateAdvisorAndRooms();
+    calculateEverything();
+    
+    // Try to load saved trip on page load
+    if (localStorage.getItem('kumbheMotoTrip')) {
+        loadSavedTrip();
     }
-    document.getElementById('downloadPriceBtn').addEventListener('click', downloadBreakdownTxt);
 </script>
 </body>
 </html>
